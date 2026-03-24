@@ -7,9 +7,22 @@ package(default_visibility = ["//visibility:public"])
 
 rust_library(
     name = "openprot_lib",
-    srcs = ["src/lib.rs"],
+    srcs = [
+        "src/lib.rs",
+        "src/cli.rs",
+        "src/commands/mod.rs",
+        "src/commands/interact.rs",
+        "src/transport/mctp_transport.rs",
+        "src/transport/mod.rs",
+        "src/transport/traits.rs",
+    ],
     crate_name = "openprot",
     edition = "2024",
+    deps = [
+        "@rust_crates//:clap",
+        "@rust_crates//:mctp",
+        "//third_party/crates_io:mctp_lib",
+    ],
 )
 
 rust_test(
@@ -21,7 +34,10 @@ rust_binary(
     name = "openprot",
     srcs = ["src/main.rs"],
     edition = "2024",
-    deps = [":openprot_lib"],
+    deps = [
+        ":openprot_lib",
+        "@rust_crates//:clap",
+    ],
 )
 
 rust_doc(

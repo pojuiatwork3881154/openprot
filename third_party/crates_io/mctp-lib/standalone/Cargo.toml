@@ -1,0 +1,15 @@
+[package]
+name = "standalone"
+version = "0.1.0"
+edition = "2024"
+authors = ["OpenPRoT Contributors"]
+license = "Apache-2.0"
+repository = "https://github.com/OpenPRoT/mctp-lib"
+description = "Standalone std implementation of mctp-lib"
+
+[dependencies]
+mctp-lib = { path = "../" }
+# Use same mctp source as mctp-lib (CodeConstruct) to avoid "two versions of crate mctp" errors.
+# Enable "std" feature so Error::Io exists (required for serial_sender I/O error mapping).
+mctp = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc", default-features = false, features = ["std"] }
+embedded-io-adapters = { version = "0.6.0", features = ["std"] }

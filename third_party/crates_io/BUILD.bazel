@@ -1,2 +1,27 @@
 # Licensed under the Apache-2.0 license
 # SPDX-License-Identifier: Apache-2.0
+#
+# mctp-lib: Path dep. Crate_universe does not generate @rust_crates//:mctp_lib.
+# Use //third_party/crates_io:mctp_lib or :mctp_lib_test. BUILD kept here (not in
+# mctp-lib/) to avoid modifying cloned source.
+
+load("@rules_rust//rust:defs.bzl", "rust_library", "rust_test")
+
+package(default_visibility = ["//visibility:public"])
+
+rust_library(
+    name = "mctp_lib",
+    srcs = ["mctp-lib/src/lib.rs"],
+    crate_name = "mctp_lib",
+    crate_root = "mctp-lib/src/lib.rs",
+    edition = "2024",
+    deps = [
+        "@rust_crates//:mctp",
+        "@rust_crates//:mctp-estack",
+    ],
+)
+
+rust_test(
+    name = "mctp_lib_test",
+    crate = ":mctp_lib",
+)

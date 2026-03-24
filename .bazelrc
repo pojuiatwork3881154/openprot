@@ -21,6 +21,11 @@ common --repo_env=BAZEL_DO_NOT_DETECT_CPP_TOOLCHAIN=1
 test --@pigweed//pw_kernel:enable_tests=true
 test --platform_suffix=test
 
+# OpenProt: combined LCOV when using `bazelisk coverage` (Rust line data may be
+# limited depending on toolchain; use `//scripts:openprot_coverage` for llvm-cov).
+coverage --combined_report=lcov
+coverage --instrumentation_filter=^//openprot[/:]
+
 # Remote execution config definitions
 # ===================================
 # Use the remote cache. This will only work for users who have permission to access it.

@@ -1,0 +1,12 @@
+# Licensed under the Apache-2.0 license
+# SPDX-License-Identifier: Apache-2.0
+#
+# Cargo workspace for coverage (cargo-llvm-cov). Primary builds use Bazel.
+
+[workspace]
+members = [
+    "openprot",
+    "third_party/crates_io/mctp-lib",
+]
+
+resolver = "2"

@@ -1,0 +1,23 @@
+# Licensed under the Apache-2.0 license
+# SPDX-License-Identifier: Apache-2.0
+#
+# Cargo manifest for coverage via cargo-llvm-cov. Primary build system is Bazel.
+
+[package]
+name = "openprot"
+version = "0.1.0"
+edition = "2024"
+license = "Apache-2.0"
+
+[lib]
+path = "src/lib.rs"
+
+[dependencies]
+# Align with //third_party/crates_io:Cargo.toml (crate_universe).
+clap = { version = "4.5.40", features = ["derive"] }
+mctp = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc", default-features = false }
+mctp-lib = { path = "../third_party/crates_io/mctp-lib" }
+
+[[bin]]
+name = "openprot"
+path = "src/main.rs"

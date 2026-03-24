@@ -65,3 +65,8 @@ ctr = { version = "0.9", default-features = false }
 aes-gcm = { version = "0.10", default-features = false, features = ["aes"] }
 cipher = { version = "0.4", default-features = false }
 
+# MCTP (mctp-lib Bazel target + openprot transport). Same git rev as
+# third_party/crates_io/mctp-lib/Cargo.toml.
+mctp = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc", default-features = false }
+mctp-estack = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc", default-features = false, features = ["log"] }
+

@@ -1,0 +1,24 @@
+[package]
+name = "mctp-lib"
+version = "0.1.0"
+edition = "2024"
+authors = ["OpenPRoT Contributors"]
+license = "Apache-2.0"
+description = "Platform-agnostic MCTP (Management Component Transport Protocol) library for embedded systems"
+repository = "https://github.com/OpenPRoT/mctp-lib"
+keywords = ["mctp", "embedded", "no-std", "protocol", "openprot"]
+categories = ["embedded", "no-std"]
+
+[features]
+
+[dependencies]
+mctp-estack = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc" , default-features = false, features = ["log"]}
+mctp = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc" , default-features = false }
+
+[dev-dependencies]
+# Patched: use same mctp source as [dependencies] (CodeConstruct) for Cargo resolution
+mctp = { git = "https://github.com/CodeConstruct/mctp-rs.git", rev = "9e52b626863b916d900ca1ddfdd9215baf0f80fc", default-features = false }
+standalone = { path = "standalone" }
+
+[package.metadata.docs.rs]
+all-features = true
